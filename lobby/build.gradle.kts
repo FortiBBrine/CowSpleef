@@ -15,5 +15,4 @@ tasks {
 
 dependencies {
     implementation(project(":common"))
-    compileOnly(libs.spigot)
 }

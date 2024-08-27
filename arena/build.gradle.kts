@@ -15,5 +15,8 @@ tasks {
 
 dependencies {
     implementation(project(":common"))
-    compileOnly(libs.spigot)
+
+    implementation(libs.koin.core)
+    implementation(libs.koin.annotations)
+    ksp(libs.koin.ksp.compiler)
 }
