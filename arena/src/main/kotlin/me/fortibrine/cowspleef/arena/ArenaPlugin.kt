@@ -1,5 +1,6 @@
 package me.fortibrine.cowspleef.arena
 
+import me.fortibrine.cowspleef.arena.modules.MainModule
 import org.bukkit.event.Listener
 import org.bukkit.plugin.Plugin
 import org.bukkit.plugin.java.JavaPlugin
@@ -8,12 +9,13 @@ import org.koin.core.context.stopKoin
 import org.koin.dsl.bind
 import org.koin.dsl.module
 import org.koin.java.KoinJavaComponent.getKoin
+import org.koin.ksp.generated.module
 
 class ArenaPlugin: JavaPlugin() {
 
     override fun onEnable() {
         startKoin {
-            modules(module {
+            modules(MainModule().module, module {
                 single { this@ArenaPlugin } bind Plugin::class
             })
         }

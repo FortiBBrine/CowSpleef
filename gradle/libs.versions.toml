@@ -6,6 +6,7 @@ spigot = "1.13.2-R0.1-SNAPSHOT"
 exposed = "0.53.0"
 koin-core = "4.0.0-RC1"
 koin-annotations = "1.4.0-RC4"
+kaml = "0.61.0"
 
 [libraries]
 coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
@@ -17,7 +18,9 @@ exposed-kotlin-datetime = { group = "org.jetbrains.exposed", name = "exposed-kot
 koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin-core" }
 koin-annotations = { group = "io.insert-koin", name = "koin-annotations", version.ref = "koin-annotations" }
 koin-ksp-compiler = { group = "io.insert-koin", name = "koin-ksp-compiler", version.ref = "koin-annotations" }
+kaml = { group = "com.charleskorn.kaml", name = "kaml", version.ref = "kaml" }
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

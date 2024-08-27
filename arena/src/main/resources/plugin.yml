@@ -1,0 +1,5 @@
+name: ArenaPlugin
+main: me.fortibrine.cowspleef.arena.ArenaPlugin
+version: 1.0
+
+api-version: 1.13

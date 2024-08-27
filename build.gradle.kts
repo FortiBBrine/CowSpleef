@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlin.serialization)
     idea
 }
 
@@ -19,6 +20,7 @@ allprojects {
 subprojects {
     apply {
         plugin("org.jetbrains.kotlin.jvm")
+        plugin("org.jetbrains.kotlin.plugin.serialization")
         plugin("com.google.devtools.ksp")
     }
 
