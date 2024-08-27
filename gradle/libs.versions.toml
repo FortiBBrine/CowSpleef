@@ -1,0 +1,13 @@
+[versions]
+kotlin = "2.0.10"
+coroutines = "1.9.0-RC.2"
+ksp = "2.0.10-1.0.24"
+spigot = "1.13.2-R0.1-SNAPSHOT"
+
+[libraries]
+coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
+spigot = { group = "org.spigotmc", name = "spigot-api", version.ref = "spigot" }
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
