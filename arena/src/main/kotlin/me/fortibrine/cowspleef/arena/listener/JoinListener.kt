@@ -1,34 +1,37 @@
 package me.fortibrine.cowspleef.arena.listener
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.launch
-import me.fortibrine.cowspleef.api.data.PlayerManager
+import org.bukkit.GameMode
+import org.bukkit.Material
+import org.bukkit.enchantments.Enchantment
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerJoinEvent
+import org.bukkit.inventory.ItemFlag
+import org.bukkit.inventory.ItemStack
 import org.bukkit.plugin.Plugin
 import org.koin.core.annotation.Singleton
 
 @Singleton
 class JoinListener(
-    private val plugin: Plugin,
-    private val playerManager: PlayerManager
+    private val plugin: Plugin
 ): Listener {
-
-    private val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
 
     @EventHandler
     fun join(event: PlayerJoinEvent) {
-        scope.launch {
-            val player = playerManager.getPlayer(event.player.name)
+        val player = event.player
 
-            plugin.logger.info(player.toString())
+        player.gameMode = GameMode.ADVENTURE
+        player.inventory.clear()
+        player.inventory.addItem(ItemStack(Material.BOW).apply {
+            addEnchantment(Enchantment.ARROW_FIRE, 1)
+            addEnchantment(Enchantment.ARROW_INFINITE, 1)
 
-            player.wins += 1
-            playerManager.setPlayer(event.player.name, player)
-        }
+            val itemMeta = this.itemMeta
+            itemMeta?.isUnbreakable = true
+            itemMeta?.addItemFlags(ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_UNBREAKABLE)
+            this.itemMeta = itemMeta
+        })
+        player.inventory.addItem(ItemStack(Material.ARROW))
     }
 
 }

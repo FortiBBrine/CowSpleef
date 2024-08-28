@@ -45,6 +45,10 @@ class ArenaPlugin: JavaPlugin() {
             this.server.pluginManager.registerEvents(listener, this@ArenaPlugin)
         }
 
+        this.server.worlds.forEach { world ->
+            world.isAutoSave = false
+        }
+
     }
 
     override fun onDisable() {
