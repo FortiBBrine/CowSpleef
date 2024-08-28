@@ -1,13 +1,13 @@
 package me.fortibrine.cowspleef.arena.config.main
 
 import com.charleskorn.kaml.Yaml
-import kotlinx.serialization.Serializable
+import me.fortibrine.cowspleef.arena.config.main.section.Config
 import org.bukkit.plugin.Plugin
 import org.koin.core.annotation.Singleton
 import java.io.File
 import java.io.FileInputStream
 
-@Singleton
+@Singleton(createdAtStart = true)
 class MainConfig(
     private val plugin: Plugin,
 ) {
@@ -32,16 +32,3 @@ class MainConfig(
     }
 
 }
-
-@Serializable
-data class Config (
-    val database: Database
-)
-
-@Serializable
-data class Database (
-    val host: String,
-    val database: String,
-    val username: String,
-    val password: String
-)
