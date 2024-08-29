@@ -1,18 +1,40 @@
 package me.fortibrine.cowspleef.arena.listener
 
+import org.bukkit.entity.Player
+import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
+import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryDragEvent
+import org.bukkit.event.inventory.InventoryMoveItemEvent
 import org.bukkit.event.inventory.InventoryPickupItemEvent
+import org.bukkit.plugin.Plugin
 import org.koin.core.annotation.Singleton
 
 @Singleton
-class InventoryListener: Listener {
+class InventoryListener(
+    private val plugin: Plugin
+) : Listener {
 
+    @EventHandler
+    fun click(event: InventoryClickEvent) {
+        val player = event.whoClicked as Player
+        if (event.clickedInventory == player.inventory) {
+            event.isCancelled = true
+        }
+    }
+
+    @EventHandler
     fun drag(event: InventoryDragEvent) {
         event.isCancelled = true
     }
 
-    fun pickup(event: InventoryPickupItemEvent) {
+    @EventHandler
+    fun pickUp(event: InventoryPickupItemEvent) {
+        event.isCancelled = true
+    }
+
+    @EventHandler
+    fun moveItem(event: InventoryMoveItemEvent) {
         event.isCancelled = true
     }
 

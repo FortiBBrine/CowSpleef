@@ -8,6 +8,7 @@ koin-core = "4.0.0-RC1"
 koin-annotations = "1.4.0-RC4"
 kaml = "0.61.0"
 mariadb = "3.4.1"
+nbteditor = "7.19.4"
 
 [libraries]
 coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
@@ -21,6 +22,7 @@ koin-annotations = { group = "io.insert-koin", name = "koin-annotations", versio
 koin-ksp-compiler = { group = "io.insert-koin", name = "koin-ksp-compiler", version.ref = "koin-annotations" }
 kaml = { group = "com.charleskorn.kaml", name = "kaml", version.ref = "kaml" }
 mariadb = { group = "org.mariadb.jdbc", name = "mariadb-java-client", version.ref = "mariadb" }
+nbteditor = { group = "io.github.bananapuncher714", name = "nbteditor", version.ref = "nbteditor" }
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

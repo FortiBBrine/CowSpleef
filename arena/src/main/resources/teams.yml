@@ -1,0 +1,9 @@
+teams:
+  - color: "RED"
+    material: "RED_STAINED_GLASS_PANE"
+    name: "Красная"
+    players: 1
+  - color: "WHITE"
+    material: "WHITE_STAINED_GLASS_PANE"
+    name: "Белая"
+    players: 1

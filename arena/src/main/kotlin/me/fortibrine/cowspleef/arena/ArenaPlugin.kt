@@ -3,6 +3,7 @@ package me.fortibrine.cowspleef.arena
 import me.fortibrine.cowspleef.api.data.PlayerManager
 import me.fortibrine.cowspleef.arena.config.main.MainConfig
 import me.fortibrine.cowspleef.arena.modules.KoinConfig
+import org.bukkit.Difficulty
 import org.bukkit.event.Listener
 import org.bukkit.plugin.Plugin
 import org.bukkit.plugin.java.JavaPlugin
@@ -47,6 +48,7 @@ class ArenaPlugin: JavaPlugin() {
 
         this.server.worlds.forEach { world ->
             world.isAutoSave = false
+            world.difficulty = Difficulty.PEACEFUL
         }
 
     }

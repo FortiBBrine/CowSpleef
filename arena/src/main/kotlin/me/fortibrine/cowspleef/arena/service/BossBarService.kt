@@ -1,9 +1,11 @@
 package me.fortibrine.cowspleef.arena.service
 
 import kotlinx.coroutines.*
+import me.fortibrine.cowspleef.arena.event.GameStartEvent
 import org.bukkit.boss.BarColor
 import org.bukkit.boss.BarStyle
 import org.bukkit.event.EventHandler
+import org.bukkit.event.HandlerList
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.plugin.Plugin
@@ -26,10 +28,17 @@ class BossBarService(
         scope.launch {
             repeat(Integer.MAX_VALUE) {
                 delay(1000L)
-                bossBar.progress = System.currentTimeMillis().toDouble() / cooldownService.cooldown
-                bossBar.setTitle(
-                    format.format(cooldownService.cooldown - System.currentTimeMillis())
-                )
+
+                if (cooldownService.cooldown == null) {
+                    bossBar.progress = 0.0
+                    bossBar.setTitle("Ожидание игроков")
+                } else {
+                    bossBar.progress = System.currentTimeMillis().toDouble() / cooldownService.cooldown!!
+                    bossBar.setTitle(
+                        format.format(cooldownService.cooldown!! - System.currentTimeMillis())
+                    )
+                }
+
             }
         }
     }
@@ -37,6 +46,12 @@ class BossBarService(
     @EventHandler
     fun join(event: PlayerJoinEvent) {
         bossBar.addPlayer(event.player)
+    }
+
+    @EventHandler
+    fun gameStart(event: GameStartEvent) {
+        bossBar.removeAll()
+        HandlerList.unregisterAll(this)
     }
 
 }

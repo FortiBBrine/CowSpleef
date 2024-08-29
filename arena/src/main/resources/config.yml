@@ -3,3 +3,6 @@ database:
   database: fortibrine
   username: fortibrine
   password: password
+game:
+  need-players: 2
+  max-players: 3
