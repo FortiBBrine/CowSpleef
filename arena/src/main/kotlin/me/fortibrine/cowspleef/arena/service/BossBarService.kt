@@ -11,6 +11,7 @@ import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.plugin.Plugin
 import org.koin.core.annotation.Singleton
 import java.text.SimpleDateFormat
+import kotlin.math.min
 
 @Singleton
 class BossBarService(
@@ -33,7 +34,11 @@ class BossBarService(
                     bossBar.progress = 0.0
                     bossBar.setTitle("Ожидание игроков")
                 } else {
-                    bossBar.progress = System.currentTimeMillis().toDouble() / cooldownService.cooldown!!
+                    val progress = (System.currentTimeMillis().toDouble() - cooldownService.startUpTime) /
+                            (cooldownService.cooldown!! - cooldownService.startUpTime)
+
+                    bossBar.progress = min(progress, 1.0)
+
                     bossBar.setTitle(
                         format.format(cooldownService.cooldown!! - System.currentTimeMillis())
                     )

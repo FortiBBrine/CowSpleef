@@ -28,7 +28,7 @@ class TeamsConfig(
         config = Yaml.default.decodeFromString(Config.serializer(), configString)
 
         fileInputStream.close()
-
+//
 //        val fileOutputStream = FileOutputStream(configFile)
 //
 //        Yaml.default.encodeToStream(Config.serializer(), Config(
@@ -37,13 +37,25 @@ class TeamsConfig(
 //                    color = ChatColor.RED,
 //                    material = Material.RED_STAINED_GLASS_PANE,
 //                    name = "Красная",
-//                    players = 1
+//                    players = 1,
+//                    location = Location(
+//                        world = "world",
+//                        x = 0.0,
+//                        y = 80.0,
+//                        z = 0.0
+//                    )
 //                ),
 //                Team(
 //                    color = ChatColor.WHITE,
 //                    material = Material.WHITE_STAINED_GLASS_PANE,
 //                    name = "Белая",
-//                    players = 1
+//                    players = 1,
+//                    location = Location(
+//                        world = "world",
+//                        x = 50.0,
+//                        y = 80.0,
+//                        z = 0.0
+//                    )
 //                ),
 //            )
 //        ), fileOutputStream)

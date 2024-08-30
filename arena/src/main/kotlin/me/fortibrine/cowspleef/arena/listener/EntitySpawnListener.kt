@@ -1,5 +1,6 @@
 package me.fortibrine.cowspleef.arena.listener
 
+import org.bukkit.entity.EntityType
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.entity.EntitySpawnEvent
@@ -10,7 +11,9 @@ class EntitySpawnListener: Listener {
 
     @EventHandler
     fun onEntitySpawn(event: EntitySpawnEvent) {
-        event.isCancelled = true
+        if (event.entity.type != EntityType.ARROW) {
+            event.isCancelled = true
+        }
     }
 
 }

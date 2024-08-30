@@ -3,7 +3,17 @@ teams:
     material: "RED_STAINED_GLASS_PANE"
     name: "Красная"
     players: 1
+    location:
+      world: "world"
+      x: 0.0
+      y: 80.0
+      z: 0.0
   - color: "WHITE"
     material: "WHITE_STAINED_GLASS_PANE"
     name: "Белая"
     players: 1
+    location:
+      world: "world"
+      x: 50.0
+      y: 80.0
+      z: 0.0

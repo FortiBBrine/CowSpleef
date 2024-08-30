@@ -1,6 +1,7 @@
 package me.fortibrine.cowspleef.arena.listener
 
 import me.fortibrine.cowspleef.arena.event.GameStartEvent
+import me.fortibrine.cowspleef.arena.team.TeamManager
 import org.bukkit.Material
 import org.bukkit.enchantments.Enchantment
 import org.bukkit.event.EventHandler
@@ -13,6 +14,7 @@ import org.koin.core.annotation.Singleton
 @Singleton
 class GameStartListener(
     private val plugin: Plugin,
+    private val teamManager: TeamManager
 ): Listener {
 
     @EventHandler
@@ -29,7 +31,14 @@ class GameStartListener(
                 this.itemMeta = itemMeta
             })
             player.inventory.addItem(ItemStack(Material.ARROW))
+
+            val location = teamManager.getTeam(player)?.location
+
+            if (location != null) {
+                player.teleport(location.toBukkitLocation())
+            }
         }
+
         plugin.server.broadcastMessage("GAME STARTED")
     }
 

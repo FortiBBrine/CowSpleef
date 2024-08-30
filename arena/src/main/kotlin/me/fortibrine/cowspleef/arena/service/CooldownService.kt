@@ -10,7 +10,6 @@ import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.event.player.PlayerQuitEvent
 import org.bukkit.plugin.Plugin
 import org.koin.core.annotation.Singleton
-import kotlin.math.min
 
 @Singleton
 class CooldownService(
@@ -20,6 +19,8 @@ class CooldownService(
 
     private val needPlayers = mainConfig.config?.game?.needPlayers ?: 3
     private val maxPlayers = mainConfig.config?.game?.maxPlayers ?: 2
+
+    var startUpTime = System.currentTimeMillis()
 
     var cooldown: Long? = null
     var isStarted = false
@@ -50,15 +51,11 @@ class CooldownService(
         val online = plugin.server.onlinePlayers.size
 
         if (online == maxPlayers) {
-            cooldown = min(
-                cooldown ?: Long.MAX_VALUE,
-                System.currentTimeMillis() + 15 * 1000L
-            )
+            startUpTime = System.currentTimeMillis()
+            cooldown = startUpTime + 15 * 1000L
         } else if (online == needPlayers) {
-            cooldown = min(
-                cooldown ?: Long.MAX_VALUE,
-                System.currentTimeMillis() + 60 * 1000L
-            )
+            startUpTime = System.currentTimeMillis()
+            cooldown = startUpTime + 60 * 1000L
         } else if (online < needPlayers) {
             cooldown = null
         }

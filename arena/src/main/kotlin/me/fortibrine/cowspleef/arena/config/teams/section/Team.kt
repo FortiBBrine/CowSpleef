@@ -11,7 +11,8 @@ data class Team (
     val color: ChatColor,
     val material: Material,
     val name: String,
-    val players: Int
+    val players: Int,
+    val location: Location
 ) {
     @Transient
     val inPlayers: MutableList<UUID> = mutableListOf()
