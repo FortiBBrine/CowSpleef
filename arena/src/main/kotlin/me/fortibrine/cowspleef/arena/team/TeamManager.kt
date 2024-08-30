@@ -108,4 +108,16 @@ class TeamManager (
         return false
     }
 
+    fun removeTeam(uniqueId: UUID) {
+        teams.forEach { team ->
+            if (team.inPlayers.contains(uniqueId)) {
+                team.inPlayers.remove(uniqueId)
+            }
+        }
+    }
+
+    fun removeTeam(player: Player) {
+        removeTeam(player.uniqueId)
+    }
+
 }

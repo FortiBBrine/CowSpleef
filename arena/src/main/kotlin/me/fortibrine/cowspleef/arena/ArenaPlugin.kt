@@ -4,6 +4,7 @@ import me.fortibrine.cowspleef.api.data.PlayerManager
 import me.fortibrine.cowspleef.arena.config.main.MainConfig
 import me.fortibrine.cowspleef.arena.modules.KoinConfig
 import org.bukkit.Difficulty
+import org.bukkit.GameRule
 import org.bukkit.event.Listener
 import org.bukkit.plugin.Plugin
 import org.bukkit.plugin.java.JavaPlugin
@@ -49,6 +50,10 @@ class ArenaPlugin: JavaPlugin() {
         this.server.worlds.forEach { world ->
             world.isAutoSave = false
             world.difficulty = Difficulty.PEACEFUL
+            world.time = 1000
+            world.weatherDuration = 0
+            world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false)
+            world.setGameRule(GameRule.DO_WEATHER_CYCLE, false)
         }
 
     }
