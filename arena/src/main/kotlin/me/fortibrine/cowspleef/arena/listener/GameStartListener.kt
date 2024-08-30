@@ -2,6 +2,7 @@ package me.fortibrine.cowspleef.arena.listener
 
 import me.fortibrine.cowspleef.arena.event.GameStartEvent
 import me.fortibrine.cowspleef.arena.team.TeamManager
+import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.enchantments.Enchantment
 import org.bukkit.event.EventHandler
@@ -42,6 +43,21 @@ class GameStartListener(
         }
 
         plugin.server.broadcastMessage("GAME STARTED")
+
+        val scoreboardManager = plugin.server.scoreboardManager
+        if (scoreboardManager != null) {
+            val scoreboard = scoreboardManager.mainScoreboard
+
+            teamManager.teams.forEach {
+                val team = scoreboard.registerNewTeam(it.name)
+                team.setAllowFriendlyFire(false)
+
+                it.inPlayers.forEach { uuid ->
+                    team.addPlayer(Bukkit.getOfflinePlayer(uuid))
+                }
+            }
+        }
+
     }
 
 }
