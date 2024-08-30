@@ -5,6 +5,7 @@ import me.fortibrine.cowspleef.arena.team.TeamManager
 import org.bukkit.Material
 import org.bukkit.enchantments.Enchantment
 import org.bukkit.event.EventHandler
+import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
@@ -17,8 +18,9 @@ class GameStartListener(
     private val teamManager: TeamManager
 ): Listener {
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGH)
     fun gameStart(event: GameStartEvent) {
+
         plugin.server.onlinePlayers.forEach { player ->
             player.inventory.clear()
             player.inventory.addItem(ItemStack(Material.BOW).apply {

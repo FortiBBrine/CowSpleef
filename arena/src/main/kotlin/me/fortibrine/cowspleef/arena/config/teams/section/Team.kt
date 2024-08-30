@@ -16,4 +16,7 @@ data class Team (
 ) {
     @Transient
     val inPlayers: MutableList<UUID> = mutableListOf()
+
+    fun isFree() = inPlayers.size < players
 }
+
